@@ -6,6 +6,8 @@ const { createCategories } = require("./adapters/categories");
 const { createOrders } = require("./adapters/orders");
 const { createCartItem } = require("./adapters/cart_items");
 
+
+// test test 
 const {
   users,
   products,
