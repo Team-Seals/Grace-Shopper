@@ -1,8 +1,30 @@
 const client = require("./client");
+//imports
+const { createUser } = require("./adapters/users");
+const { createProducts } = require("./adapters/products");
+const { createCategories } = require("./adapters/categories");
+const { createOrders } = require("./adapters/orders");
+const { createCartItem } = require("./adapters/cart_items");
+
+const {
+  users,
+  products,
+  categories,
+  orders,
+  cart_items,
+} = require("./seedData");
 
 async function dropTables() {
   console.log("Dropping tables...");
   try {
+    // may have to change order
+    await client.query(`
+    DROP TABLE IF EXISTS cart_items;
+    DROP TABLE IF EXISTS orders;
+    DROP TABLE IF EXISTS products;
+    DROP TABLE IF EXISTS category;
+    DROP TABLE IF EXISTS users;
+    `);
   } catch (error) {
     console.error(error);
   }
@@ -13,11 +35,12 @@ async function createTables() {
   try {
     //USER TABLE
     console.log("users");
+    // saying "users" already exists
     await client.query(`
     CREATE TABLE users(
       id SERIAL PRIMARY KEY,
       email VARCHAR(255) UNIQUE NOT NULL,
-      password VARCHAR(255) UNIQUE NOT NULL
+      password VARCHAR(255) NOT NULL
     )
     `);
 
@@ -73,6 +96,40 @@ async function createTables() {
 async function populateTables() {
   console.log("Populating tables...");
   try {
+    //users
+    for (const user of users) {
+      console.log("Users:", users);
+      await createUser(user); //not defined yet
+    }
+    console.log("users created!");
+
+    //products
+    for (const product of products) {
+      console.log("Products:", products);
+      await createProducts(product);
+    }
+    console.log("products created!");
+
+    //cateorgies
+    for (const category of categories) {
+      console.log("Categories:", categories);
+      await createCategories(category);
+    }
+    console.log("categoires created!");
+
+    //orders
+    for (const order of orders) {
+      console.log("Orders:", orders);
+      await createOrders(order);
+    }
+    console.log("orders created!");
+
+    //cart-items
+    for (const cart_item of cart_items) {
+      console.log("cart_items:", cart_items);
+      await createCartItem(cart_item);
+    }
+    console.log("cart items created!");
   } catch (error) {
     console.error(error);
   }
