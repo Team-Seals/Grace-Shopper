@@ -46,6 +46,15 @@ async function createTables() {
     )
     `);
 
+     //CATEGORY TABLE
+     console.log("categories");
+     await client.query(`
+     CREATE TABLE category(
+       id SERIAL PRIMARY KEY,
+       name VARCHAR(255) UNIQUE NOT NULL
+     )
+     `);
+
     //PRODUCTS TABLE
     console.log("products");
     await client.query(`
@@ -56,15 +65,6 @@ async function createTables() {
       price INTEGER,
       inventory INTEGER,
       category_id INTEGER REFERENCES category(id)
-    )
-    `);
-
-    //CATEGORY TABLE
-    console.log("categories");
-    await client.query(`
-    CREATE TABLE category(
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(255) UNIQUE NOT NULL
     )
     `);
 
