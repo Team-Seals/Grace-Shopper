@@ -18,7 +18,15 @@ async function createCartItem({ order_id, product_id, quantity, price }) {
     throw error;
   }
 }
+async function deleteCartItem(order_id, product_id){
 
+};
+async function editCartItem(order_id, product_id, quantity){
+
+};
+async function getCartItems(order_id){
+
+};
 module.exports = {
   createCartItem,
 };
