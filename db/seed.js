@@ -6,8 +6,7 @@ const { createCategories } = require("./adapters/categories");
 const { createOrders } = require("./adapters/orders");
 const { createCartItem } = require("./adapters/cart_items");
 
-
-// test test 
+// test test
 const {
   users,
   products,
@@ -46,9 +45,9 @@ async function createTables() {
     )
     `);
 
-     //CATEGORY TABLE
-     console.log("categories");
-     await client.query(`
+    //CATEGORY TABLE
+    console.log("categories");
+    await client.query(`
      CREATE TABLE category(
        id SERIAL PRIMARY KEY,
        name VARCHAR(255) UNIQUE NOT NULL
@@ -101,16 +100,9 @@ async function populateTables() {
     //users
     for (const user of users) {
       console.log("Users:", users);
-      await createUser(user); 
+      await createUser(user);
     }
     console.log("users created!");
-
-    //products
-    for (const product of products) {
-      console.log("Products:", products);
-      await createProducts(product);
-    }
-    console.log("products created!");
 
     //cateorgies
     for (const category of categories) {
@@ -118,6 +110,12 @@ async function populateTables() {
       await createCategories(category);
     }
     console.log("categoires created!");
+    //products
+    for (const product of products) {
+      console.log("Products:", products);
+      await createProducts(product);
+    }
+    console.log("products created!");
 
     //orders
     for (const order of orders) {

@@ -14,6 +14,11 @@ server.use(express.json());
 server.use(morgan("dev"));
 server.use(cors());
 
+// 👇️ handle uncaught exceptions
+process.on("uncaughtException", function (err) {
+  console.log(err);
+});
+
 // Servers the built React app
 server.use(express.static(path.join(__dirname, "./client", "dist")));
 
