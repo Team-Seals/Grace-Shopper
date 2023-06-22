@@ -101,7 +101,7 @@ async function populateTables() {
     //users
     for (const user of users) {
       console.log("Users:", users);
-      await createUser(user); //not defined yet
+      await createUser(user); 
     }
     console.log("users created!");
 
