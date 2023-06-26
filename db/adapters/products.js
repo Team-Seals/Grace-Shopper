@@ -50,8 +50,67 @@ async function getAllProducts() {
   }
 }
 
+async function updateProduct(productId, {
+  title,
+  description,
+  price,
+  inventory,
+  category_id,
+}) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+        UPDATE products
+        SET title = $1,
+            description = $2,
+            price = $3,
+            inventory = $4,
+            category_id = $5
+        WHERE id = $6
+        RETURNING *;
+      `,
+      [title, description, price, inventory, category_id, productId]
+    );
+
+    if (!product) {
+      return null;
+    }
+
+    return product;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function deleteProduct(productId) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+        DELETE FROM products
+        WHERE id = $1
+        RETURNING *;
+      `,
+      [productId]
+    );
+
+    if (!product) {
+      return null;
+    }
+
+    return product;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createProduct,
   getProductsById,
-  getAllProducts
+  getAllProducts,
+  updateProduct,
+  deleteProduct,
 };
