@@ -1,6 +1,6 @@
 const client = require("../client");
 
-async function createOrders({ user_id, name, total_price, stauts }) {
+async function createOrders({ user_id, name, total_price, status }) {
   try {
     console.log("Starting to insert ORDERS into db");
     const {
@@ -11,7 +11,7 @@ async function createOrders({ user_id, name, total_price, stauts }) {
         VALUES ($1, $2, $3, $4)
         RETURNING *;
         `,
-      [user_id, name, total_price, stauts]
+      [user_id, name, total_price, status]
     );
     return order;
   } catch (error) {
@@ -86,6 +86,30 @@ async function deleteOrder(order_id) {
       `,
       [order_id]
     );
+    return order;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
+async function deleteOrder(orderId) {
+  try {
+    const {
+      rows: [order],
+    } = await client.query(
+      `
+        DELETE FROM orders
+        WHERE id = $1
+        RETURNING *;
+      `,
+      [orderId]
+    );
+
+    if (!order) {
+      return null;
+    }
+
     return order;
   } catch (error) {
     throw error;
