@@ -7,7 +7,13 @@ const { createOrders } = require("./adapters/orders");
 const { createCartItem } = require("./adapters/cart_items");
 
 // test test
-const { users, products, categories, orders, cart_items } = require("./seedData");
+const {
+  users,
+  products,
+  categories,
+  orders,
+  cart_items,
+} = require("./seedData");
 
 async function dropTables() {
   console.log("Dropping tables...");
@@ -63,12 +69,13 @@ async function createTables() {
     // ORDERS TABLE
     console.log("orders");
     await client.query(`
-      CREATE TABLE orders (
-        id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES users(id),
-        total_price INTEGER,
-        status BOOLEAN DEFAULT false
-      )
+    CREATE TABLE orders(
+      id SERIAL PRIMARY KEY,
+      user_id INTEGER REFERENCES users(id),
+      name VARCHAR(255) UNIQUE NOT NULL,
+      total_price INTEGER,
+      status BOOLEAN DEFAULT false
+    )
     `);
 
     // CART ITEMS TABLE
@@ -93,7 +100,7 @@ async function populateTables() {
     // USERS
     console.log("users");
     for (const user of users) {
-      console.log("User:", user);
+      console.log("Users:", users);
       await createUser(user);
     }
     console.log("users created!");

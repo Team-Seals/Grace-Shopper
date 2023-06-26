@@ -18,75 +18,59 @@ async function createCartItem({ order_id, product_id, quantity, price }) {
     throw error;
   }
 }
-
-async function getCartItemById(cartItemId) {
+async function deleteCartItem(order_id, product_id) {
   try {
+    console.log("deleting cart item");
     const {
-      rows: [cart_item],
+      rows: [cart_items],
     } = await client.query(
-      `
-        SELECT * FROM cart_items
-        WHERE id = $1;
+      `DELETE FROM cart_items
+      WHERE id = $1, $2
+      RETURNING *;
       `,
-      [cartItemId]
+      [order_id, product_id]
     );
-    return cart_item;
+    return cart_items;
   } catch (error) {
     throw error;
   }
 }
-
-async function updateCartItem(cartItemId, { quantity, price }) {
+async function editCartItem(order_id, product_id, { quantity }) {
   try {
+    console.log("...editing cart item");
     const {
-      rows: [cart_item],
+      rows: [cart_items],
     } = await client.query(
-      `
-        UPDATE cart_items
-        SET quantity = $1,
-            price = $2
-        WHERE id = $3
-        RETURNING *;
+      `UPDATE cart_items
+      SET quantity = 1$
+      WHERE id=$2
+      RETURNING *;
       `,
-      [quantity, price, cartItemId]
+      [quantity]
     );
-
-    if (!cart_item) {
-      return null;
-    }
-
-    return cart_item;
+    return cart_items;
   } catch (error) {
     throw error;
   }
 }
-
-async function deleteCartItem(cartItemId) {
+async function getCartItems(order_id) {
   try {
+    console.log("getting cart items");
     const {
-      rows: [cart_item],
+      rows: [cart_items],
     } = await client.query(
+      `SELECT *
+      FROM cart_items;
       `
-        DELETE FROM cart_items
-        WHERE id = $1
-        RETURNING *;
-      `,
-      [cartItemId]
     );
-
-    if (!cart_item) {
-      return null;
-    }
-
-    return cart_item;
+    return rows;
   } catch (error) {
     throw error;
   }
 }
-
 module.exports = {
   createCartItem,
-  getCartItemById,
-  updateCartItem,
   deleteCartItem,
+  editCartItem,
+  getCartItems,
 };
