@@ -19,6 +19,24 @@ async function createCategories({ name }) {
   }
 }
 
+async function getAllCategories() {
+  try {
+    console.log("Starting to get all categories");
+    const {
+      rows: [category],
+    } = await client.query(
+      `
+      SELECT *
+      FROM categories;
+      `
+    );
+    return category;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createCategories,
+  getAllCategories,
 };

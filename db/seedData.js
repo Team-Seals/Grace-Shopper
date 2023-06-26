@@ -24,8 +24,8 @@ const products = [
 const categories = [{ name: "Engines" }, { name: "Glass" }];
 
 const orders = [
-  { user_id: 1, total_price: 3000, status: true },
-  { user_id: 2, total_price: 70000, status: false },
+  { user_id: 1, name: "Edgard", total_price: 3000, status: true },
+  { user_id: 2, name: "Mark", total_price: 70000, status: false },
 ];
 
 const cart_items = [

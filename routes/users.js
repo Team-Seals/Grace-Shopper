@@ -7,3 +7,5 @@ const userRouter = express.Router();
 userRouter.get("/test", (req, res, next) => {
   res.send("USERS COMING SOON!");
 });
+
+module.exports = userRouter;

@@ -1,17 +1,17 @@
 const client = require("../client");
 
-async function createOrders({ user_id, total_price, stauts }) {
+async function createOrders({ user_id, name, total_price, stauts }) {
   try {
     console.log("Starting to insert ORDERS into db");
     const {
       rows: [order],
     } = await client.query(
       `
-        INSERT INTO orders(user_id, total_price, status)
-        VALUES ($1, $2, $3)
+        INSERT INTO orders(user_id, name, total_price, status)
+        VALUES ($1, $2, $3, $4)
         RETURNING *;
         `,
-      [user_id, total_price, stauts]
+      [user_id, name, total_price, stauts]
     );
     return order;
   } catch (error) {
@@ -53,7 +53,7 @@ async function getOrderById(order_id) {
   }
 }
 
-async function updateOrder(order_id, { total_price, status }) {
+async function updateOrder(order_id, { name, total_price, status }) {
   try {
     console.log("...updating orders");
     const {
@@ -61,11 +61,11 @@ async function updateOrder(order_id, { total_price, status }) {
     } = await client.query(
       `
       UPDATE orders
-      SET total_price = $1, status = $2
-      WHERE id = $3
+      SET name = $1, total_price = $2, status = $3
+      WHERE id = $4
       RETURNING *;
       `,
-      [total_price, status, order_id]
+      [name, total_price, status, order_id]
     );
     return order;
   } catch (error) {

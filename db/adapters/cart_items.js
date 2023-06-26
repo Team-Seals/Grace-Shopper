@@ -70,4 +70,7 @@ async function getCartItems(order_id) {
 }
 module.exports = {
   createCartItem,
+  deleteCartItem,
+  editCartItem,
+  getCartItems,
 };

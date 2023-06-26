@@ -73,6 +73,7 @@ async function createTables() {
     CREATE TABLE orders(
       id SERIAL PRIMARY KEY,
       user_id INTEGER REFERENCES users(id),
+      name VARCHAR(255) UNIQUE NOT NULL,
       total_price INTEGER,
       status BOOLEAN DEFAULT false
     )
