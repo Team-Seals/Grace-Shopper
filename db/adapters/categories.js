@@ -7,7 +7,7 @@ async function createCategories({ name }) {
       rows: [category],
     } = await client.query(
       `
-        INSERT INTO category(name)
+        INSERT INTO categories(name)
         VALUES ($1)
         RETURNING *;
         `,
