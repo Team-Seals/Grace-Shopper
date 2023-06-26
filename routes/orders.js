@@ -9,8 +9,6 @@ const express = require("express");
 
 const orderRouter = express.Router();
 
-console.log("this is a test");
-
 //GET /api/orders/test
 orderRouter.get("/test", (req, res, next) => {
   res.send("ORDERS COMING SOON!");
