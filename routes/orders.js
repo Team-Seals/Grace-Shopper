@@ -9,6 +9,8 @@ const express = require("express");
 
 const orderRouter = express.Router();
 
+console.log("this is a test");
+
 //GET /api/orders/test
 orderRouter.get("/test", (req, res, next) => {
   res.send("ORDERS COMING SOON!");
@@ -56,7 +58,6 @@ orderRouter.patch("/:user_id", async (req, res, next) => {
 //DELETE /api/orders/:userId
 orderRouter.delete("/:user_id", async (req, res, next) => {
   //needs work
-
   try {
     const { user_id } = req.params;
     const deletedOrder = await deleteOrder(user_id);
