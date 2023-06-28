@@ -26,7 +26,6 @@ orderRouter.get("/", async (req, res, next) => {
 
 //POST /api/orders
 orderRouter.post("/", async (req, res, next) => {
-  //needs work
   try {
     const { user_id, name, total_price, status } = req.body;
     const newOrder = await createOrders({ user_id, name, total_price, status });
@@ -54,7 +53,6 @@ orderRouter.patch("/:user_id", async (req, res, next) => {
 
 //DELETE /api/orders/:userId
 orderRouter.delete("/:user_id", async (req, res, next) => {
-  //needs work
   try {
     const { user_id } = req.params;
     const deletedOrder = await deleteOrder(user_id);

@@ -29,10 +29,7 @@ async function getProductsById(productId) {
   try {
     const {
       rows: [product],
-    } = await client.query(
-      "SELECT * FROM products WHERE id=$1",
-      [productId]
-    )
+    } = await client.query("SELECT * FROM products WHERE id=$1", [productId]);
   } catch (error) {
     throw error;
   }
@@ -40,23 +37,21 @@ async function getProductsById(productId) {
 
 async function getAllProducts() {
   try {
-    const {
-      rows: allProducts, 
-    } = await client.query(
-      "SELECT * FROM products"
-    )
+    console.log("...getting all products");
+    const { rows } = await client.query(`
+    SELECT *
+    FROM products;
+    `);
+    return rows;
   } catch (error) {
-    
+    throw error;
   }
 }
 
-async function updateProduct(productId, {
-  title,
-  description,
-  price,
-  inventory,
-  category_id,
-}) {
+async function updateProduct(
+  productId,
+  { title, description, price, inventory, category_id }
+) {
   try {
     const {
       rows: [product],
