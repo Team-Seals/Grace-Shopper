@@ -4,6 +4,8 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const { authRequired } = require("./routes/utility");
 
 const PORT = process.env.PORT || 3000;
 const server = express();
@@ -14,6 +16,7 @@ client.connect();
 server.use(express.json());
 server.use(morgan("dev"));
 server.use(cors());
+server.use(cookieParser(process.env.COOKIE_SECRET));
 
 // 👇️ handle uncaught exceptions
 process.on("uncaughtException", function (err) {
@@ -25,6 +28,10 @@ server.use(express.static(path.join(__dirname, "./client", "dist")));
 
 // Routes
 server.use("/api", require("./routes"));
+
+server.get("/test", authRequired, (req, res, next) => {
+  res.send("YOU ARE NOT AUTHORIZED!");
+});
 
 // Sends the built React app for all other requests
 server.use((req, res, next) => {
