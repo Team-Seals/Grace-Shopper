@@ -28,6 +28,7 @@ server.use(express.static(path.join(__dirname, "./client", "dist")));
 
 // Routes
 server.use("/api", require("./routes"));
+// server.use("/api", require)
 
 server.get("/test", authRequired, (req, res, next) => {
   res.send("YOU ARE NOT AUTHORIZED!");
