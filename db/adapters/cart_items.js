@@ -35,7 +35,7 @@ async function deleteCartItem(order_id, product_id) {
     throw error;
   }
 }
-async function editCartItem(order_id, product_id, { quantity }) {
+async function editCartItem(order_id, { quantity }) {
   try {
     console.log("...editing cart item");
     const {
@@ -46,7 +46,7 @@ async function editCartItem(order_id, product_id, { quantity }) {
       WHERE id=$2
       RETURNING *;
       `,
-      [quantity]
+      [quantity, order_id]
     );
     return cart_items;
   } catch (error) {
@@ -63,7 +63,7 @@ async function getCartItems(order_id) {
       FROM cart_items;
       `
     );
-    return rows;
+    return cart_items;
   } catch (error) {
     throw error;
   }

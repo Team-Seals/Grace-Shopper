@@ -27,10 +27,11 @@ cartItemsRouter.get("/", async (req, res, next) => {
 });
 
 //DELETE  /api/cart_items/:orderId
+//needs work
 cartItemsRouter.delete("/order_id", async (req, res, next) => {
   try {
-    const { order_id, product_id } = req.params;
-    const deletedCartItem = await deleteCartItem(order_id, product_id);
+    const { order_id } = req.params;
+    const deletedCartItem = await deleteCartItem(order_id);
     res.send(deletedCartItem);
   } catch (error) {
     next(error);
@@ -41,6 +42,7 @@ cartItemsRouter.delete("/order_id", async (req, res, next) => {
 cartItemsRouter.post("/", async (req, res, next) => {
   try {
     const { order_id, product_id, quantity, price } = req.body;
+    console.log("REQ.BODY:", req.body);
     const newCartItem = await createCartItem({
       order_id,
       product_id,
@@ -52,14 +54,15 @@ cartItemsRouter.post("/", async (req, res, next) => {
     next(error);
   }
 });
+
 //PATCH /api/cart_items/:orderId
+//needs work
 cartItemsRouter.patch("/order_id", async (req, res, next) => {
   try {
-    const { quantity } = req.params;
-    const { order_id, product_id } = req.body;
-    const updatedCartItem = await editCartItem(quantity, {
-      order_id,
-      product_id,
+    const { order_id } = req.params;
+    const { quantity } = req.body;
+    const updatedCartItem = await editCartItem(order_id, {
+      quantity,
     });
     res.send(updatedCartItem);
   } catch (error) {

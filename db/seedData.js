@@ -6,22 +6,26 @@ const users = [
 
 const products = [
   {
-    title: "Propeler",
-    description: "Moves the plane",
-    price: 1000,
-    inventory: 1,
+    title: "Jordan 1s",
+    description: "Jordans first ever sneaker",
+    price: 150,
+    inventory: 100,
     category_id: 1,
   },
   {
-    title: "Engine",
-    description: "Plane engine",
-    price: 50000,
-    inventory: 3,
+    title: "Nike Air Force 1",
+    description: "Padded collar feels soft and comfortable",
+    price: 120,
+    inventory: 30,
     category_id: 2,
   },
 ];
 
-const categories = [{ name: "Engines" }, { name: "Glass" }];
+const categories = [
+  { name: "Casual" },
+  { name: "Running" },
+  { name: "LifeStyle" },
+];
 
 const orders = [
   { user_id: 1, name: "Edgard", total_price: 3000, status: true },
