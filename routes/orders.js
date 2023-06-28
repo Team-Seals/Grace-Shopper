@@ -38,7 +38,6 @@ orderRouter.post("/", async (req, res, next) => {
 
 //PATCH /api/orders/:user_id
 orderRouter.patch("/:user_id", async (req, res, next) => {
-  //needs work
   try {
     const { user_id } = req.params;
     const { name, total_price, status } = req.body;

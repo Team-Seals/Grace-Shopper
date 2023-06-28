@@ -77,7 +77,7 @@ async function deleteOrder(order_id) {
   try {
     console.log("deleting order...");
     const {
-      rows: [order],
+      rows: [deletedOrder],
     } = await client.query(
       `
       DELETE FROM orders
@@ -86,35 +86,42 @@ async function deleteOrder(order_id) {
       `,
       [order_id]
     );
-    return order;
-  } catch (error) {
-    throw error;
-  }
-}
-
-
-async function deleteOrder(orderId) {
-  try {
-    const {
-      rows: [order],
-    } = await client.query(
+    // may revisit
+    await client.query(
       `
-        DELETE FROM orders
-        WHERE id = $1
-        RETURNING *;
-      `,
-      [orderId]
+    DELETE FROM cart_items
+    WHERE order_id = $1;
+    `,
+      [order_id]
     );
-
-    if (!order) {
-      return null;
-    }
-
-    return order;
+    return deletedOrder;
   } catch (error) {
     throw error;
   }
 }
+
+// async function deleteOrder(orderId) {
+//   try {
+//     const {
+//       rows: [order],
+//     } = await client.query(
+//       `
+//         DELETE FROM orders
+//         WHERE id = $1
+//         RETURNING *;
+//       `,
+//       [orderId]
+//     );
+
+//     if (!order) {
+//       return null;
+//     }
+
+//     return order;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 module.exports = {
   createOrders,
