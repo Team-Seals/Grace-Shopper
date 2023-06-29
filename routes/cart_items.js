@@ -61,7 +61,6 @@ cartItemsRouter.patch("/:order_id/edit/:product_id", async (req, res, next) => {
   try {
     const { order_id, product_id } = req.params;
     const { quantity } = req.body;
-    console.log("qty:", quantity);
     const updatedCartItem = await editCartItem(order_id, product_id, quantity);
     res.send(updatedCartItem);
   } catch (error) {
