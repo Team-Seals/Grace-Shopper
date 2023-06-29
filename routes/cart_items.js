@@ -28,7 +28,7 @@ cartItemsRouter.get("/", async (req, res, next) => {
 
 //DELETE  /api/cart_items/:orderId
 //needs work
-cartItemsRouter.delete("/order_id", async (req, res, next) => {
+cartItemsRouter.delete("/:order_id", async (req, res, next) => {
   try {
     const { order_id } = req.params;
     const deletedCartItem = await deleteCartItem(order_id);
@@ -57,13 +57,12 @@ cartItemsRouter.post("/", async (req, res, next) => {
 
 //PATCH /api/cart_items/:orderId
 //needs work
-cartItemsRouter.patch("/order_id", async (req, res, next) => {
+cartItemsRouter.patch("/:order_id/edit/:product_id", async (req, res, next) => {
   try {
-    const { order_id } = req.params;
+    const { order_id, product_id } = req.params;
     const { quantity } = req.body;
-    const updatedCartItem = await editCartItem(order_id, {
-      quantity,
-    });
+    console.log("qty:", quantity);
+    const updatedCartItem = await editCartItem(order_id, product_id, quantity);
     res.send(updatedCartItem);
   } catch (error) {
     next(error);
