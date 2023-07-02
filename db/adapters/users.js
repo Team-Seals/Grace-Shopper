@@ -81,10 +81,10 @@ async function getUserByUsername(username) {
         `,
       [username]
     );
-    if (!user) {
-      console.log("userByUsername log;", user);
-      return null;
-    }
+    // if (!user) {
+    //   console.log("userByUsername log;", user);
+    //   return null;
+    // }
     return user;
   } catch (error) {
     throw error;
