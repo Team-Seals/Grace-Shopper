@@ -5,6 +5,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Checkout from "./components/Checkout";
+import AllProduct from "./components/AllProduct";
 
 function App() {
   const [healthMsg, setHealthMsg] = useState(null);
@@ -35,6 +36,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/product" element={<AllProduct />} />
       </Routes>
     </div>
   );
