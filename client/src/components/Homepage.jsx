@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "./NavBar";
 import { fetchAllCategories } from "../api/categories";
 import useAuth from "../hooks/useAuth";
 import { fetchMe } from "../api/auth";
+import { fetchAllProducts } from "../api/products";
 
 export default function Homepage() {
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   const { user, setUser } = useAuth();
 
   useEffect(() => {
@@ -25,26 +26,36 @@ export default function Homepage() {
     fetchUser();
   }, []);
 
+  useEffect(() => {
+    async function fetchProducts() {
+      const productResult = await fetchAllProducts();
+      setProducts(productResult);
+      console.log("Products on HP", productResult);
+    }
+    fetchProducts();
+  }, []);
+
   return (
     <div>
-      <p>welcome to the home page</p>
+      <p className="welcome-text">welcome to SNRKS!</p>
       <div className="homepage">
         <div className="categories">
-          <h3>categories</h3>
+          <h2>categories</h2>
           {categories.length > 0 &&
             categories.map((category) => (
-              <div>
-                <h4>{category.name}</h4>
-                <p></p>
+              <div key={category.id}>
+                <h4 className="category">{category.name}</h4>
               </div>
             ))}
-          <p>1</p>
-          <p>2</p>
         </div>
         <div className="products">
-          <h3>Products</h3>
-          <p>1</p>
-          <p>2</p>
+          <h2>Products</h2>
+          {products.length > 0 &&
+            products.map((product) => (
+              <div key={product.id}>
+                <h4>{product.title}</h4>
+              </div>
+            ))}
         </div>
       </div>
     </div>

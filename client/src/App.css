@@ -1,3 +1,7 @@
+.title {
+  display: flex;
+  justify-content: center;
+}
 
 /* NAVBAR */
 
@@ -9,111 +13,130 @@
 }
 
 .searchbar {
-  width: 100%;
+  width: 135%;
 }
 
 /* HOMEPAGE */
 
+.welcome-text {
+  display: flex;
+  justify-content: center;
+}
+
 .homepage {
-  background-color: blue;
   display: flex;
   justify-content: space-around;
 }
-=======
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: -1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  border: 2px solid;
+}
+
+.category:hover {
+  background-color: green;
+}
+
+/* PRODUCTS PAGE */
+
 .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .header {
-    margin-bottom: 20px;
-  }
-  
-  .productBody {
-    display: flex;
-    align-items: flex-start;
-  }
-  
-  .productImage {
-    flex: 1;
-    margin-right: 20px;
-  }
-  
-  .productImage img {
-    width: 100%;
-  }
-  
-  .productDetails {
-    flex: 2;
-  }
-  
-  .productName {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .productPrice {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .productColorway {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  .sizingChart {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .sizingChart h4 {
-    margin-bottom: 10px;
-  }
-  
-  .sizingChart h4 {
-    margin-right: 10px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    display: flex;
-    justify-content: center;
-  }
-  
-  td {
-    padding: 8px;
-    text-align: center;
-    border-radius: 50%;
-    background-color: #ccc;
-    margin: 5px;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-  }
-  
-  td:hover {
-    background-color: #aaa;
-  }
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  .addToCartButton {
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: black;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .addToCartButton:hover {
-    background-color: grey;
-  }
-  
+.header {
+  margin-bottom: 20px;
+}
 
+.productBody {
+  display: flex;
+  align-items: flex-start;
+}
+
+.productImage {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.productImage img {
+  width: 100%;
+}
+
+.productDetails {
+  flex: 2;
+}
+
+.productName {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.productPrice {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.productColorway {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.sizingChart {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.sizingChart h4 {
+  margin-bottom: 10px;
+}
+
+.sizingChart h4 {
+  margin-right: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  display: flex;
+  justify-content: center;
+}
+
+td {
+  padding: 8px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 5px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+td:hover {
+  background-color: #aaa;
+}
+
+.addToCartButton {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addToCartButton:hover {
+  background-color: grey;
+}

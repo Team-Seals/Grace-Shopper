@@ -5,9 +5,9 @@ import { logout } from "../api/auth";
 
 export default function NavBar() {
   const [searchInput, setSearchInput] = useState("");
-  const { user, setLoggedIn } = useAuth();
+  const { user, setLoggedIn, setUser } = useAuth();
+  console.log("user is: ", user);
   const navigate = useNavigate();
-  console.log("user in nav", user);
 
   const categories = [
     { name: "Casual" },
@@ -30,6 +30,7 @@ export default function NavBar() {
     try {
       const logoutResult = await logout();
       console.log("Logout result:", logoutResult);
+      setUser({ id: null, username: "Guest" });
       setLoggedIn(false);
       navigate("/");
     } catch (error) {}
@@ -48,16 +49,16 @@ export default function NavBar() {
         />
       </div>
       <div>
-        {user ? (
+        {user.id ? (
           <button onClick={handleLogout}>Logout</button>
         ) : (
           <div>
             <Link to="/login">Login/Register</Link>
           </div>
         )}
-        <div>
-          <Link to="/checkout">Cart</Link>
-        </div>
+      </div>
+      <div className="checkout">
+        <Link to="/checkout">Cart</Link>
       </div>
     </div>
   );
