@@ -5,6 +5,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Checkout from "./components/Checkout";
+import NavBar from "./components/NavBar";
 import AllProduct from "./components/AllProduct";
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
 
   return (
     <div>
+      <header>
+        <h1>SNRKS</h1>
+        <NavBar />
+      </header>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { fetchAllCategories } from "../api/categories";
+import useAuth from "../hooks/useAuth";
+import { fetchMe } from "../api/auth";
 
 export default function Homepage() {
   const [categories, setCategories] = useState([]);
-  console.log(categories);
+  const { user, setUser } = useAuth();
 
   useEffect(() => {
     async function fetchCategories() {
@@ -14,12 +16,17 @@ export default function Homepage() {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    async function fetchUser() {
+      const userResult = await fetchMe();
+      setUser(userResult);
+      console.log("fetching user...", userResult);
+    }
+    fetchUser();
+  }, []);
+
   return (
     <div>
-      <h1>HOME PAGE!!!</h1>
-      <div>
-        <NavBar />
-      </div>
       <p>welcome to the home page</p>
       <div className="homepage">
         <div className="categories">

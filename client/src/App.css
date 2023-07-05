@@ -1,3 +1,25 @@
+
+/* NAVBAR */
+
+.Nav {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.searchbar {
+  width: 100%;
+}
+
+/* HOMEPAGE */
+
+.homepage {
+  background-color: blue;
+  display: flex;
+  justify-content: space-around;
+}
+=======
 .container {
     width: 100%;
     max-width: 1200px;
@@ -94,3 +116,4 @@
     background-color: grey;
   }
   
+
