@@ -34,7 +34,8 @@ export async function fetchMe() {
 
 export async function logout() {
   try {
-    const response = await fetch("/api/users/logout");
+    console.log("click");
+    const response = await fetch("/api/auth/logout");
     const result = await response.json();
     return result;
   } catch (error) {

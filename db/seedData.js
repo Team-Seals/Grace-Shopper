@@ -25,6 +25,9 @@ const categories = [
   { name: "Casual" },
   { name: "Running" },
   { name: "LifeStyle" },
+  { name: "Basketball" },
+  { name: "Sandals/Slides" },
+  { name: "Boots" },
 ];
 
 const orders = [
