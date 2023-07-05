@@ -31,3 +31,13 @@ export async function fetchMe() {
     console.error(error);
   }
 }
+
+export async function logout() {
+  try {
+    const response = await fetch("/api/users/logout");
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}

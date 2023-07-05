@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { logout } from "../api/auth";
 
 export default function NavBar() {
-  const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
-  const auth = useAuth();
-  console.log("user:", auth);
+  const { user, setLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  console.log("user in nav", user);
 
   const categories = [
     { name: "Casual" },
@@ -24,6 +25,16 @@ export default function NavBar() {
     });
   }
 
+  //Loggout result is saying undefined, need the login/register link to show if logged out
+  const handleLogout = async () => {
+    try {
+      const logoutResult = await logout();
+      console.log("Logout result:", logoutResult);
+      setLoggedIn(false);
+      navigate("/");
+    } catch (error) {}
+  };
+
   return (
     <div className="Nav">
       <p>logo</p>
@@ -37,13 +48,13 @@ export default function NavBar() {
         />
       </div>
       <div>
-        {/* {user ? (
-          <h2>{`Hello ${user}`}</h2>
+        {user ? (
+          <button onClick={handleLogout}>Logout</button>
         ) : (
           <div>
             <Link to="/login">Login/Register</Link>
           </div>
-        )} */}
+        )}
         <div>
           <Link to="/checkout">Cart</Link>
         </div>
