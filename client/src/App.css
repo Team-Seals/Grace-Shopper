@@ -10,10 +10,22 @@
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
+  background-color: #333;
+  padding: 50px;
 }
 
 .searchbar {
   width: 135%;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+}
+
+.links a {
+  text-decoration: none;
+  color: white;
 }
 
 /* HOMEPAGE */
