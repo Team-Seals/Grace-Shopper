@@ -3,6 +3,10 @@ import React from "react";
 
 export default function ProductDetails() {
   // fetch a single product using id from useParams()
+
+  async function addToCart() {
+    // ?????
+  }
   return (
     <div className="container">
       <div className="header">
