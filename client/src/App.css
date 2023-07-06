@@ -87,6 +87,9 @@
   cursor: pointer;
 }
 
+.button:hover {
+}
+
 /* PRODUCTS PAGE */
 
 .container {
