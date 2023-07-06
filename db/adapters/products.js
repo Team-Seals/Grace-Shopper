@@ -50,7 +50,7 @@ async function getAllProducts() {
 
 async function updateProduct(
   productId,
-  { title, description, price, inventory, category_id }
+  { title, description, image, price, inventory, category_id }
 ) {
   try {
     const {
@@ -60,13 +60,14 @@ async function updateProduct(
         UPDATE products
         SET title = $1,
             description = $2,
-            price = $3,
-            inventory = $4,
-            category_id = $5
-        WHERE id = $6
+            image =$3
+            price = $4,
+            inventory = $5,
+            category_id = $6
+        WHERE id = $7
         RETURNING *;
       `,
-      [title, description, price, inventory, category_id, productId]
+      [title, description, image, price, inventory, category_id, productId]
     );
 
     if (!product) {
