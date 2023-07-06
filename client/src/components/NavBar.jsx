@@ -38,17 +38,23 @@ export default function NavBar() {
 
   return (
     <div className="Nav">
-      <p>logo</p>
-      <div>
-        <input
-          className="searchbar"
-          type="text"
-          placeholder="search"
-          value={searchInput}
-          onChange={handleChange}
-        />
+      <h1 className="title">SNRKS</h1>
+      <div className="search-wrapper">
+        <div className="input=holder">
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Type to search"
+            value={searchInput}
+            onChange={handleChange}
+          />
+          <button className="search-icon" onClick="searchToggle(this,event)">
+            <span></span>
+          </button>
+        </div>
+        <span className="close" onClick="searchToggle(this, event)"></span>
       </div>
-      <div>
+      <div className="links">
         {user.id ? (
           <button onClick={handleLogout}>Logout</button>
         ) : (
@@ -57,7 +63,7 @@ export default function NavBar() {
           </div>
         )}
       </div>
-      <div className="checkout">
+      <div className="links">
         <Link to="/checkout">Cart</Link>
       </div>
     </div>
