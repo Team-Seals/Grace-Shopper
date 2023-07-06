@@ -67,6 +67,8 @@ async function createTables() {
     `);
 
     // ORDERS TABLE
+    // Potentially remove total_price on the order table
+    // Do math to compute the total price
     console.log("orders");
     await client.query(`
     CREATE TABLE orders(

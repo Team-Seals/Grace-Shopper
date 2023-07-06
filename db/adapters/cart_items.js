@@ -18,7 +18,9 @@ async function createCartItem({ order_id, product_id, quantity, price }) {
     throw error;
   }
 }
-async function deleteCartItem(order_id) {
+
+// ---- Is this doing what you need it to do???
+async function deleteCartItem(id) {
   try {
     console.log("deleting cart item");
     const {
@@ -29,7 +31,7 @@ async function deleteCartItem(order_id) {
       WHERE id = $1
       RETURNING *;
       `,
-      [order_id]
+      [id]
     );
     return cart_item;
   } catch (error) {

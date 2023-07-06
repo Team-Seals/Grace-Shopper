@@ -27,11 +27,12 @@ cartItemsRouter.get("/", async (req, res, next) => {
 });
 
 //DELETE  /api/cart_items/:orderId
+// What needs to happen here???
 //needs work
-cartItemsRouter.delete("/:order_id", async (req, res, next) => {
+cartItemsRouter.delete("/id", async (req, res, next) => {
   try {
     const { order_id } = req.params;
-    const deletedCartItem = await deleteCartItem(order_id);
+    const deletedCartItem = await deleteCartItem(id);
     res.send(deletedCartItem);
   } catch (error) {
     next(error);

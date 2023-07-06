@@ -34,6 +34,8 @@ async function getAllOrders() {
   }
 }
 
+// Need to join products with the order
+// Make sure to add the cart_items PK (id) to query
 async function getOrderById(order_id) {
   try {
     console.log("...getting order by Id");

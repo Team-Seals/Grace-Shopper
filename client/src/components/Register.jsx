@@ -25,6 +25,8 @@ export default function Register() {
       });
       const result = await response.json();
       console.log("REGISTER RESULT:", result);
+      // after register go to the homepage
+      // isLoggedIn(true)
       navigate("/login");
     } catch (error) {
       console.error("Error:", error);

@@ -41,6 +41,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product" element={<AllProduct />} />
+        <Route path="/product/:id" element={<h1>Produce details page</h1>} />
       </Routes>
     </div>
   );

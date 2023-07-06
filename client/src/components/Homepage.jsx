@@ -17,14 +17,15 @@ export default function Homepage() {
     fetchCategories();
   }, []);
 
-  useEffect(() => {
-    async function fetchUser() {
-      const userResult = await fetchMe();
-      setUser(userResult);
-      console.log("fetching user...", userResult);
-    }
-    fetchUser();
-  }, []);
+  // The user is already being fetching in the AuthContext, so you can read the user from the useAuth hook
+  // useEffect(() => {
+  //   async function fetchUser() {
+  //     const userResult = await fetchMe();
+  //     setUser(userResult);
+  //     console.log("fetching user...", userResult);
+  //   }
+  //   fetchUser();
+  // }, []);
 
   useEffect(() => {
     async function fetchProducts() {

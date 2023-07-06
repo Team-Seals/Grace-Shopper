@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { fetchMe } from "../api/auth";
 
 export default function Checkout() {
+  // fetch your cart with items attached (JOIN)
   return (
     <div>
       return(

@@ -48,6 +48,7 @@ async function getAllProducts() {
   }
 }
 
+// Update with Object.keys set string
 async function updateProduct(
   productId,
   { title, description, price, inventory, category_id }

@@ -3,23 +3,19 @@ const client = require("../client");
 /* USERS */
 async function createUser(userObj) {
   console.log("probe 2");
-  try {
-    const {
-      rows: [user],
-    } = await client.query(
-      `
+  const {
+    rows: [user],
+  } = await client.query(
+    `
           INSERT INTO users(username, password) 
           VALUES($1, $2) 
           ON CONFLICT (username) DO NOTHING 
           RETURNING *;
         `,
-      [userObj.username, userObj.password]
-    );
-    console.log("createuser log:", user);
-    return user;
-  } catch (error) {
-    throw error;
-  }
+    [userObj.username, userObj.password]
+  );
+  console.log("createuser log:", user);
+  return user;
 }
 
 async function getAllUsers() {
