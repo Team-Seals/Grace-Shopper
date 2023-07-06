@@ -55,6 +55,53 @@
   background-color: green;
 }
 
+/* LOGIN PAGE */
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 3px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.button:hover {
+}
+
 /* PRODUCTS PAGE */
 
 .container {
