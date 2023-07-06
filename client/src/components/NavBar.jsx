@@ -38,8 +38,35 @@ export default function NavBar() {
 
   return (
     <div className="Nav">
-      <h1 className="title">SNRKS</h1>
-      <div className="search-wrapper">
+      <h1 className="main">
+        <Link to="/">SNRKS</Link>
+        </h1>
+      <input
+        className="searchBar"
+        type="text"
+        placeholder="Search"
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <h3 className="links">
+        <div>
+          {user.id ? (
+            <button onClick={handleLogout}>Logout</button>
+          ) : (
+            <div>
+              <Link to="/login">Login/Register</Link>
+            </div>
+          )}
+        </div>
+        <div>
+          <Link to="/checkout">Cart</Link>
+        </div>
+      </h3>
+    </div>
+  );
+}
+
+{
+  /* <div className="search-wrapper">
         <div className="input=holder">
           <input
             type="text"
@@ -53,19 +80,5 @@ export default function NavBar() {
           </button>
         </div>
         <span className="close" onClick="searchToggle(this, event)"></span>
-      </div>
-      <div className="links">
-        {user.id ? (
-          <button onClick={handleLogout}>Logout</button>
-        ) : (
-          <div>
-            <Link to="/login">Login/Register</Link>
-          </div>
-        )}
-      </div>
-      <div className="links">
-        <Link to="/checkout">Cart</Link>
-      </div>
-    </div>
-  );
+      </div> */
 }
