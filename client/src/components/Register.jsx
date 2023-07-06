@@ -25,7 +25,7 @@ export default function Register() {
       });
       const result = await response.json();
       console.log("REGISTER RESULT:", result);
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -33,23 +33,35 @@ export default function Register() {
 
   return (
     <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit} className="login-form">
-        <input
-          type="email"
-          name="email"
-          placeholder="email"
-          onChange={(e) => setNewUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={(e) => setNewPassword(e.target.value)}
-        />
-        <button>Submit</button>
-        <Link to="/register">Don't have an account? Register now!</Link>
-      </form>
+      <div className="login-container">
+        <h2 className="login-title">Register</h2>
+        <form onSubmit={handleSubmit} className="login-form">
+          <label className="label" htmlFor="email">
+            E-mail
+          </label>
+          <input
+            className="input"
+            type="email"
+            name="email"
+            placeholder="email"
+            onChange={(e) => setNewUsername(e.target.value)}
+          />
+          <label className="label" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="input"
+            type="password"
+            name="password"
+            placeholder="password"
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <button className="button">Submit</button>
+          <Link className="signup-link" to="/login">
+            Already have an accout? Login now!
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }
