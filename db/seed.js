@@ -54,6 +54,7 @@ async function createTables() {
     `);
 
     // PRODUCTS TABLE
+    //add colorway
     console.log("products");
     await client.query(`
       CREATE TABLE products (
