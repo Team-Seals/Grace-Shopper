@@ -66,6 +66,7 @@ body {
 
 .category:hover {
   background-color: green;
+  cursor: pointer;
 }
 
 /* LOGIN/REGISTER PAGE */

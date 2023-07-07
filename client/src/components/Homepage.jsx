@@ -50,7 +50,9 @@ export default function Homepage() {
         <div className="categories">
           <h2>categories</h2>
           <div>
-            <h4 onClick={() => setSelectedCategory(null)}>All Categories</h4>
+            <h4 onClick={() => setSelectedCategory(null)} className="category">
+              All Categories
+            </h4>
           </div>
           {categories.length > 0 &&
             categories.map((category) => (

@@ -8,6 +8,8 @@ const products = [
   {
     title: "Jordan 1s",
     description: "Jordans first ever sneaker",
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYuMoz3i2PSpqGNJVSC7W7F_x-HwvNUpvAMA&usqp=CAU",
     price: 150,
     inventory: 100,
     category_id: 1,
