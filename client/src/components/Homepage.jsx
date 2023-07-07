@@ -5,6 +5,7 @@ import { fetchMe } from "../api/auth";
 import { fetchAllProducts } from "../api/products";
 
 export default function Homepage() {
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const { user, setUser } = useAuth();
@@ -35,27 +36,39 @@ export default function Homepage() {
     fetchProducts();
   }, []);
 
+  console.log("Selected Category", selectedCategory);
+  const filteredProducts = products.filter(
+    (product) => product.category_id === selectedCategory
+  );
+  const productsToDisplay = filteredProducts.length
+    ? filteredProducts
+    : products;
   return (
     <div>
       <p className="welcome-text">welcome to SNRKS!</p>
       <div className="homepage">
         <div className="categories">
           <h2>categories</h2>
+          <div>
+            <h4 onClick={() => setSelectedCategory(null)}>All Categories</h4>
+          </div>
           {categories.length > 0 &&
             categories.map((category) => (
-              <div key={category.id}>
+              <div
+                onClick={() => setSelectedCategory(category.id)}
+                key={category.id}
+              >
                 <h4 className="category">{category.name}</h4>
               </div>
             ))}
         </div>
         <div className="products">
           <h2>Products</h2>
-          {products.length > 0 &&
-            products.map((product) => (
-              <div key={product.id}>
-                <h4>{product.title}</h4>
-              </div>
-            ))}
+          {productsToDisplay.map((product) => (
+            <div key={product.id}>
+              <h4>{product.title}</h4>
+            </div>
+          ))}
         </div>
       </div>
     </div>
