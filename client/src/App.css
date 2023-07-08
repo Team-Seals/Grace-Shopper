@@ -69,6 +69,27 @@ body {
   cursor: pointer;
 }
 
+.product-header {
+  display: flex;
+  justify-content: center;
+}
+
+.product-card {
+  border: 1px solid;
+  margin: 10px;
+}
+
+.product-title {
+  display: flex;
+  justify-content: center;
+  border-top: 0.5px solid;
+}
+
+.product-price {
+  display: flex;
+  justify-content: center;
+}
+
 /* LOGIN/REGISTER PAGE */
 
 .login-container {

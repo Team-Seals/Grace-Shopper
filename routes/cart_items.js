@@ -2,8 +2,7 @@ const {
   createCartItem,
   deleteCartItem,
   editCartItem,
-  getCartItems,
-  cartItemId,
+  getAllCartItems,
 } = require("../db/adapters/cart_items");
 
 const express = require("express");
@@ -20,7 +19,7 @@ cartItemsRouter.get("/test", (req, res, next) => {
 //GET /api/cart_items
 cartItemsRouter.get("/", async (req, res, next) => {
   try {
-    const cart_items = await getCartItems();
+    const cart_items = await getAllCartItems();
     res.send(cart_items);
   } catch (error) {
     next(error);
