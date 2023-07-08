@@ -3,6 +3,7 @@ const {
   deleteCartItem,
   editCartItem,
   getCartItems,
+  cartItemId,
 } = require("../db/adapters/cart_items");
 
 const express = require("express");
@@ -26,12 +27,12 @@ cartItemsRouter.get("/", async (req, res, next) => {
   }
 });
 
-//DELETE  /api/cart_items/:orderId
+//DELETE  /api/cart_items/:cartItemId
 //needs work
-cartItemsRouter.delete("/:order_id", async (req, res, next) => {
+cartItemsRouter.delete("/:cartItemId", async (req, res, next) => {
   try {
-    const { order_id } = req.params;
-    const deletedCartItem = await deleteCartItem(order_id);
+    const { cartItemId } = req.params;
+    const deletedCartItem = await deleteCartItem(cartItemId);
     res.send(deletedCartItem);
   } catch (error) {
     next(error);
