@@ -61,15 +61,20 @@ export default function Homepage() {
                 key={category.id}
               >
                 <h4 className="category">{category.name}</h4>
-                {/* <img src={product.imageUrl} /> */}
               </div>
             ))}
         </div>
         <div className="products">
-          <h2>Products</h2>
+          <h2 className="product-header">Products</h2>
           {productsToDisplay.map((product) => (
-            <div key={product.id}>
-              <h4>{product.title}</h4>
+            <div className="product-card" key={product.id}>
+              <img
+                src={product.imageUrl}
+                alt="product image"
+                className="product-img"
+              />
+              <h4 className="product-title">{product.title}</h4>
+              <p className="product-price">${product.price}</p>
             </div>
           ))}
         </div>
