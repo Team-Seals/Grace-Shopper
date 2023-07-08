@@ -61,6 +61,7 @@ export default function Homepage() {
                 key={category.id}
               >
                 <h4 className="category">{category.name}</h4>
+                {/* <img src={product.imageUrl} /> */}
               </div>
             ))}
         </div>
