@@ -79,7 +79,7 @@ export default function Homepage() {
               <p className="product-price">${product.price}</p>
               <button
                 className="product-button"
-                onClick={() => navigate(`/products/${product.id}`)}
+                onClick={() => navigate(`/product/${product.id}`)}
               >
                 View
               </button>
