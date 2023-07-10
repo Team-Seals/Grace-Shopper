@@ -4,13 +4,13 @@ import { viewPost } from "../api/products";
 
 export default function ViewProduct() {
   const { id } = useParams();
-  const [product, setProducts] = useState([]);
+  const [product, setProduct] = useState(null);
 
   useEffect(() => {
     async function fetchSinglePost() {
       const response = await viewPost(id);
-      console.log("Single post:", response);
-      setProducts(response);
+      console.log("Single Product:", response);
+      setProduct(response);
     }
     fetchSinglePost();
   }, []);
@@ -19,11 +19,14 @@ export default function ViewProduct() {
     <div>
       <h1>Single Post</h1>
       <div>
-        {/* {products.map((product) => (
+        {product && (
           <div>
-            <h2>{product.name}</h2>
+            <img src={product.imageUrl} alt="product image" />
+            <h2>{product.title}</h2>
+            <p>{product.price}</p>
+            <button>Add To Cart</button>
           </div>
-        ))} */}
+        )}
       </div>
     </div>
   );

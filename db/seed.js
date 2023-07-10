@@ -61,7 +61,8 @@ async function createTables() {
         id SERIAL PRIMARY KEY,
         title TEXT NOT NULL,
         description TEXT NOT NULL,
-        imageUrl TEXT,
+        size INTEGER,
+        image_url TEXT,
         price INTEGER,
         inventory INTEGER,
         category_id INTEGER REFERENCES categories(id)

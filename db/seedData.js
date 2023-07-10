@@ -8,7 +8,7 @@ const products = [
   {
     title: "Jordan 1s",
     description: "Jordans first ever sneaker",
-    imageUrl:
+    image_url:
       "https://res.cloudinary.com/duheblu5c/image/upload/f_auto,q_auto/v1/GraceShopper/d57pqepz2uwu0luczj8u",
     price: 150,
     inventory: 100,

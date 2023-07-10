@@ -7,3 +7,11 @@ export async function getCartItems() {
     console.error(error);
   }
 }
+
+export async function createCart() {
+  try {
+    const response = await fetch("/api/cart_items");
+  } catch (error) {
+    console.error(error);
+  }
+}
