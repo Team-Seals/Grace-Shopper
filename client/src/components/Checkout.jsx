@@ -15,9 +15,9 @@ export default function Checkout() {
 
   return (
     <div>
-      <h1 style="color:red; text-align: center;">Order Review</h1>
+      <h1 className="Title">Order Review</h1>
       <div>
-        <h3 style="color:red; text-align: center;">Your Items</h3>
+        <h3 className="Item-list">Your Items</h3>
 
         {cartItems.length > 0 &&
           cartItems.map((cartItem) => (

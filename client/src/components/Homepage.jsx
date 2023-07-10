@@ -71,7 +71,7 @@ export default function Homepage() {
           {productsToDisplay.map((product) => (
             <div className="product-card" key={product.id}>
               <img
-                src={product.imageUrl}
+                src={product.image_url}
                 alt="product image"
                 className="product-img"
               />
