@@ -24,6 +24,16 @@ productRouter.get("/", async (req, res, next) => {
     next(error);
   }
 });
+// GET /api/products/:id
+productRouter.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const product = await getProductsById(id);
+    res.send(product);
+  } catch (error) {
+    next(error);
+  }
+});
 
 /* WE MIGHT NOT NEED ALL OF THESE ROUTES */
 
@@ -40,17 +50,6 @@ productRouter.post("/", async (req, res, next) => {
       category_id,
     });
     res.send(newProduct);
-  } catch (error) {
-    next(error);
-  }
-});
-
-// GET /api/products/:id
-productRouter.get("/:id", async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const product = await getProductsById(id);
-    res.send(product);
   } catch (error) {
     next(error);
   }

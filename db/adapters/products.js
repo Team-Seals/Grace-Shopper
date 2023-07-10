@@ -25,14 +25,29 @@ async function createProduct({
   }
 }
 
-async function getProductsById(productId) {
-  try {
-    const {
-      rows: [product],
-    } = await client.query("SELECT * FROM products WHERE id=$1", [productId]);
-  } catch (error) {
-    throw error;
+// async function getProductsById(productId) {
+//   try {
+//     const {
+//       rows: [product],
+//     } = await client.query("SELECT * FROM products WHERE id=$1", [productId]);
+//   } catch (error) {
+//     throw error;
+//   }
+// }
+
+async function getProductsById(id) {
+  console.log("Getting product by id...");
+  const {
+    rows: [product],
+  } = await client.query(`
+  SELECT *
+  FROM products
+  WHERE id =${id}
+  `);
+  if (!product) {
+    return null;
   }
+  return product;
 }
 
 async function getAllProducts() {

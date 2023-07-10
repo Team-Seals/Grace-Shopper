@@ -77,6 +77,9 @@ body {
 .product-card {
   border: 1px solid;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .product-title {
@@ -88,6 +91,11 @@ body {
 .product-price {
   display: flex;
   justify-content: center;
+}
+
+.product-button {
+  width: 50%;
+  margin-left: 80px;
 }
 
 /* LOGIN/REGISTER PAGE */

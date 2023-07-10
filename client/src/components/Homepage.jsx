@@ -3,12 +3,14 @@ import { fetchAllCategories } from "../api/categories";
 import useAuth from "../hooks/useAuth";
 import { fetchMe } from "../api/auth";
 import { fetchAllProducts } from "../api/products";
+import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const { user, setUser } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchCategories() {
@@ -75,6 +77,12 @@ export default function Homepage() {
               />
               <h4 className="product-title">{product.title}</h4>
               <p className="product-price">${product.price}</p>
+              <button
+                className="product-button"
+                onClick={() => navigate(`/products/${product.id}`)}
+              >
+                View
+              </button>
             </div>
           ))}
         </div>

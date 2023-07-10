@@ -7,6 +7,7 @@ import Register from "./components/Register";
 import Checkout from "./components/Checkout";
 import NavBar from "./components/NavBar";
 import AllProduct from "./components/AllProduct";
+import ViewProduct from "./components/ViewProduct";
 
 function App() {
   const [healthMsg, setHealthMsg] = useState(null);
@@ -41,6 +42,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product" element={<AllProduct />} />
+        <Route path="/product/:id" element={<ViewProduct />} />
       </Routes>
     </div>
   );
