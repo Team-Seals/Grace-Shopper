@@ -27,7 +27,7 @@ cartItemsRouter.get("/", async (req, res, next) => {
 });
 
 //DELETE  /api/cart_items/:cartItemId
-//needs work
+
 cartItemsRouter.delete("/:cartItemId", async (req, res, next) => {
   try {
     const { cartItemId } = req.params;
