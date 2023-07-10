@@ -10,27 +10,6 @@ import AllProduct from "./components/AllProduct";
 import ViewProduct from "./components/ViewProduct";
 
 function App() {
-  const [healthMsg, setHealthMsg] = useState(null);
-  const [err, setErr] = useState(null);
-
-  useEffect(() => {
-    async function checkHealth() {
-      try {
-        const response = await fetch("/api/health");
-        if (!response.ok) {
-          throw {
-            message: "Api is Down 😭",
-          };
-        }
-        const { message } = await response.json();
-        setHealthMsg(message);
-      } catch (error) {
-        setErr(error.message);
-      }
-    }
-    checkHealth();
-  }, []);
-
   return (
     <div>
       <header>
