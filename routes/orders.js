@@ -9,6 +9,8 @@ const express = require("express");
 
 const orderRouter = express.Router();
 
+const { authRequired } = require("./utility");
+
 //GET /api/orders/test
 orderRouter.get("/test", (req, res, next) => {
   res.send("ORDERS COMING SOON!");
@@ -27,8 +29,8 @@ orderRouter.get("/", async (req, res, next) => {
 //POST /api/orders
 orderRouter.post("/", async (req, res, next) => {
   try {
-    const { user_id, name, total_price, status } = req.body;
-    const newOrder = await createOrders({ user_id, name, total_price, status });
+    const { user_id, status } = req.body;
+    const newOrder = await createOrders({ user_id, status });
     res.send(newOrder);
   } catch (error) {
     next(error);

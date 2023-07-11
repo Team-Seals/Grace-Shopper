@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { viewPost } from "../api/products";
+import { createCart } from "../api/cart_items";
 
 export default function ViewProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [addToCart, setAddToCart] = useState(null);
 
   useEffect(() => {
     async function fetchSinglePost() {
@@ -15,16 +17,22 @@ export default function ViewProduct() {
     fetchSinglePost();
   }, []);
 
+  const handleClick = async () => {
+    console.log("adding to cart!");
+    const response = await createCart();
+    setAddToCart(response);
+  };
+
   return (
     <div>
       <h1>Single Post</h1>
       <div>
         {product && (
           <div>
-            <img src={product.imageUrl} alt="product image" />
+            <img src={product.image_url} alt="product image" />
             <h2>{product.title}</h2>
             <p>{product.price}</p>
-            <button>Add To Cart</button>
+            <button onClick={() => handleClick()}>Add To Cart</button>
           </div>
         )}
       </div>
