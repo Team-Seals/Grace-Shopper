@@ -1,17 +1,17 @@
 const client = require("../client");
 
-async function createOrders({ user_id, name, total_price, status }) {
+async function createOrders({ user_id, status }) {
   try {
     console.log("Starting to insert ORDERS into db");
     const {
       rows: [order],
     } = await client.query(
       `
-        INSERT INTO orders(user_id, name, total_price, status)
-        VALUES ($1, $2, $3, $4)
+        INSERT INTO orders(user_id, status)
+        VALUES ($1, $2)
         RETURNING *;
         `,
-      [user_id, name, total_price, status]
+      [user_id, status]
     );
     return order;
   } catch (error) {
@@ -51,6 +51,40 @@ async function getOrderById(order_id) {
   } catch (error) {
     throw error;
   }
+}
+
+async function getOrderByUserId(user_id) {
+  const {
+    rows: [order],
+  } = await client.query(
+    `
+  SELECT
+  orders.id AS id,
+  orders.total_price AS total_price,
+  orders.status AS status,
+  orders.user_id AS user_id
+  COALESCE(JSON_AGG(
+    JSON_BUILD_OBJECT(
+      'id', cart_items.id,
+      'product_id', products.id,
+      'title', products.title,
+      'quantity', cart_items.quantity,
+      'price', products.price
+    )
+  ), '[]'::json) AS products
+FROM
+  shoppingcarts
+  LEFT JOIN cart_items ON orders.id = cart_items.order_id
+  LEFT JOIN products ON products.id = cart_items.product_id
+WHERE
+  orders.user_id = $1
+  AND orders.status = 'pending'
+GROUP BY
+  orders.id, orders.status, orders.user_id
+  `,
+    [user_id]
+  );
+  return order;
 }
 
 async function updateOrder(order_id, { name, total_price, status }) {
@@ -100,33 +134,11 @@ async function deleteOrder(order_id) {
   }
 }
 
-// async function deleteOrder(orderId) {
-//   try {
-//     const {
-//       rows: [order],
-//     } = await client.query(
-//       `
-//         DELETE FROM orders
-//         WHERE id = $1
-//         RETURNING *;
-//       `,
-//       [orderId]
-//     );
-
-//     if (!order) {
-//       return null;
-//     }
-
-//     return order;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
-
 module.exports = {
   createOrders,
   getAllOrders,
   getOrderById,
+  getOrderByUserId,
   updateOrder,
   deleteOrder,
 };
