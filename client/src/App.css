@@ -95,7 +95,7 @@ body {
 
 .product-button {
   width: 50%;
-  margin-left: 80px;
+  margin-left: 125px;
 }
 
 /* LOGIN/REGISTER PAGE */
@@ -153,6 +153,11 @@ body {
 }
 
 /* PRODUCTS PAGE */
+
+.product-img {
+  height: 40vh;
+  width: 50vh;
+}
 
 .container {
   width: 100%;
