@@ -3,13 +3,14 @@ const {
   createOrders,
   updateOrder,
   deleteOrder,
+  getCartByUserId,
 } = require("../db/adapters/orders");
 
 const express = require("express");
 
 const orderRouter = express.Router();
 
-const { authRequired } = require("./utility");
+const { authRequired, verifyToken } = require("./utility");
 
 //GET /api/orders/test
 orderRouter.get("/test", (req, res, next) => {
@@ -21,6 +22,16 @@ orderRouter.get("/", async (req, res, next) => {
   try {
     const orders = await getAllOrders();
     res.send(orders);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET /api/orders/cart
+orderRouter.get("/cart", verifyToken, async (req, res, next) => {
+  try {
+    const userCart = await getCartByUserId(req.user.id);
+    res.send(userCart);
   } catch (error) {
     next(error);
   }

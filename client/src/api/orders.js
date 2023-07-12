@@ -13,3 +13,13 @@ export async function createOrder(user_id, status) {
     console.error(error);
   }
 }
+
+export async function getUserCart() {
+  try {
+    const response = await fetch("/api/orders/cart");
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { getCartItems } from "../api/cart_items";
+import { deleteCartItem, getCartItems } from "../api/cart_items";
+import { getUserCart } from "../api/orders";
 
 export default function Checkout() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cart, setCart] = useState(null);
 
   useEffect(() => {
     async function fetchCartItems() {
-      const result = await getCartItems();
-      console.log("cart-items:", result);
-      setCartItems(result);
+      const result = await getUserCart();
+      console.log("this should be cart: ", result);
+      setCart(result);
     }
     fetchCartItems();
   }, []);
+
+  // async function handleDelete(id) {
+  //   try {
+  //     const response = await deleteCartItem(id);
+  //     console.log("response in handleDelete:", response);
+
+  //     const updatedCartItem = await getCartItems();
+  //     console.log("result from deleting cart item:", updatedCartItem);
+
+  //     if (Array.isArray(updatedCartItem)) {
+  //       setCartItems([...updatedCartItem]);
+  //     } else {
+  //       console.log("Invalid response for cart items.");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   return (
     <div>
@@ -19,13 +38,7 @@ export default function Checkout() {
       <div>
         <h3 className="Item-list">Your Items</h3>
 
-        {cartItems.length > 0 &&
-          cartItems.map((cartItem) => (
-            <div key={cartItem.id}>
-              <h3>{cartItem.id}</h3>
-              <p>{cartItem.price}</p>
-            </div>
-          ))}
+        {cart && cart.products.map((p) => <p>{p.title}</p>)}
       </div>
     </div>
   );
