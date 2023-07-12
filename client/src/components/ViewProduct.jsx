@@ -25,13 +25,12 @@ export default function ViewProduct() {
 
   return (
     <div>
-      <h1>Single Post</h1>
       <div>
         {product && (
-          <div>
+          <div className="single-product-container">
             <img src={product.image_url} alt="product image" />
-            <h2>{product.title}</h2>
-            <p>{product.price}</p>
+            <h1>{product.title}</h1>
+            <h4>Price:${product.price}</h4>
             <button onClick={() => handleClick()}>Add To Cart</button>
           </div>
         )}
