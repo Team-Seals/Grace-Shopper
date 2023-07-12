@@ -169,6 +169,25 @@ const products = [
     inventory: 80,
     category_id: 8,
   },
+  {
+    title: "Altra Olympus 4",
+    description: "Durable, rugged, excellent traction over any terrain",
+    image_url:
+      "https://cdn.shopify.com/s/files/1/0016/4252/8868/products/IMG_3103_2048x2048.jpg?v=1616432362",
+    price: 150,
+    inventory: 40,
+    category_id: 9,
+  },
+  {
+    title: "Altra Mont Blanc",
+    description:
+      "Light, excellent traction and cushion for sharp rocks poking your feet",
+    image_url:
+      "https://photo3.i-run.fr/altra-mont-blanc-m-chaussures-homme-543233-1-sz.jpg",
+    price: 180,
+    inventory: 30,
+    category_id: 9,
+  },
 ];
 
 const categories = [
@@ -180,6 +199,7 @@ const categories = [
   { name: "Vans" },
   { name: "Rebock" },
   { name: "Crocs" },
+  { name: "Altra" },
 ];
 
 const orders = [
