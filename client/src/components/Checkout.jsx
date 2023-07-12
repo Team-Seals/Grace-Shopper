@@ -37,8 +37,14 @@ export default function Checkout() {
       <h1 className="Title">Order Review</h1>
       <div>
         <h3 className="Item-list">Your Items</h3>
+        {/* {cart &&
+          cart.products.map((product) => (
+            <div>
+              <h1>{product.title}</h1>
+            </div>
+          ))} */}
 
-        {cart && cart.products.map((p) => <p>{p.title}</p>)}
+        {/* {cart && cart.products.map((p) => <p>{p.title}</p>)} */}
       </div>
     </div>
   );
