@@ -19,12 +19,7 @@ export default function ViewProduct() {
 
   const handleClick = async () => {
     console.log("adding to cart!");
-    const response = await addItemToCart(
-      order_id,
-      product.id,
-      1,
-      product.price
-    );
+    const response = await addItemToCart(product.id, 1);
     setCartItems(response);
   };
 

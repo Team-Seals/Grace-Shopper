@@ -4,6 +4,8 @@ const {
   editCartItem,
   getAllCartItems,
 } = require("../db/adapters/cart_items");
+const { verifyToken } = require("./utility");
+const client = require("../db/client");
 
 const express = require("express");
 
@@ -39,18 +41,48 @@ cartItemsRouter.delete("/:cartItemId", async (req, res, next) => {
 });
 
 //POST /api/cart_items
-cartItemsRouter.post("/", async (req, res, next) => {
+cartItemsRouter.post("/", verifyToken, async (req, res, next) => {
   try {
-    const { title, image_url, order_id, product_id, quantity, price } =
-      req.body;
+    const { product_id, quantity } = req.body;
     console.log("REQ.BODY:", req.body);
+
+    // Create a variable we will reassign to the cart value
+    let cart;
+
+    // Check if the user has a cart..
+    const {
+      rows: [userCart],
+    } = await client.query(
+      `
+          SELECT * FROM orders
+          WHERE orders.user_id = $1
+    `,
+      [req.user.id]
+    );
+
+    cart = userCart;
+
+    if (!cart) {
+      console.log("Creating cart....");
+      const {
+        rows: [newCart],
+      } = await client.query(
+        `
+          INSERT INTO orders(user_id, status)
+          VALUES ($1, $2)
+          RETURNING *;
+      `,
+        [req.user.id, false]
+      );
+      cart = newCart;
+    }
+
+    console.log("Our Cart: ", cart);
+
     const newCartItem = await createCartItem({
-      title,
-      image_url,
-      order_id,
+      order_id: cart.id,
       product_id,
       quantity,
-      price,
     });
     res.send(newCartItem);
   } catch (error) {

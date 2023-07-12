@@ -83,14 +83,12 @@ async function createTables() {
     await client.query(`
         CREATE TABLE cart_items (
           id SERIAL PRIMARY KEY,
-          title TEXT,
-          image_url TEXT,
           order_id INTEGER REFERENCES orders(id), 
           product_id INTEGER REFERENCES products(id),
-          quantity INTEGER,
-          price INTEGER
+          quantity INTEGER
         )
       `);
+    console.log("Cart items table created....");
   } catch (error) {
     console.log(error);
   }
@@ -102,7 +100,6 @@ async function populateTables() {
     // USERS
     console.log("users");
     for (const user of users) {
-      console.log("Users:", users);
       await createUser(user);
     }
     console.log("users created!");
@@ -110,7 +107,6 @@ async function populateTables() {
     // CATEGORIES
     console.log("categories");
     for (const category of categories) {
-      console.log("Category:", category);
       await createCategories(category);
     }
     console.log("categories created!");
@@ -118,7 +114,6 @@ async function populateTables() {
     // PRODUCTS
     console.log("products");
     for (const product of products) {
-      console.log("Product:", product);
       await createProduct(product);
     }
     console.log("products created!");
@@ -126,7 +121,6 @@ async function populateTables() {
     // ORDERS
     console.log("orders");
     for (const order of orders) {
-      console.log("Order:", order);
       await createOrders(order);
     }
     console.log("orders created!");

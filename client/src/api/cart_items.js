@@ -18,14 +18,14 @@ export async function deleteCartItem(id) {
   }
 }
 
-export async function addItemToCart(order_id, product_id, quantity, price) {
+export async function addItemToCart(product_id, quantity) {
   try {
     const response = await fetch("/api/cart_items", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ order_id, product_id, quantity, price }),
+      body: JSON.stringify({ product_id, quantity }),
     });
     const result = response.json();
     return result;

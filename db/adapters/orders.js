@@ -57,32 +57,31 @@ async function getOrderById(order_id) {
   }
 }
 
-async function getOrderByUserId(user_id) {
+async function getCartByUserId(user_id) {
   const {
     rows: [order],
   } = await client.query(
     `
   SELECT
   orders.id AS id,
-  orders.total_price AS total_price,
   orders.status AS status,
-  orders.user_id AS user_id
+  orders.user_id AS user_id,
   COALESCE(JSON_AGG(
     JSON_BUILD_OBJECT(
       'id', cart_items.id,
       'product_id', products.id,
       'title', products.title,
       'quantity', cart_items.quantity,
-      'price', products.price
+      'price', products.price,
+      'image_url', products.image_url
     )
   ), '[]'::json) AS products
-FROM
-  shoppingcarts
+FROM orders
   LEFT JOIN cart_items ON orders.id = cart_items.order_id
   LEFT JOIN products ON products.id = cart_items.product_id
 WHERE
   orders.user_id = $1
-  AND orders.status = 'pending'
+  AND orders.status = false
 GROUP BY
   orders.id, orders.status, orders.user_id
   `,
@@ -142,7 +141,7 @@ module.exports = {
   createOrders,
   getAllOrders,
   getOrderById,
-  getOrderByUserId,
+  getCartByUserId,
   updateOrder,
   deleteOrder,
 };
