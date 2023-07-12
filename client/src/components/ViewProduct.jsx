@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { viewPost } from "../api/products";
-import { createCart } from "../api/cart_items";
+import { addItemToCart } from "../api/cart_items";
 
 export default function ViewProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [addToCart, setAddToCart] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     async function fetchSinglePost() {
@@ -19,8 +19,13 @@ export default function ViewProduct() {
 
   const handleClick = async () => {
     console.log("adding to cart!");
-    const response = await createCart();
-    setAddToCart(response);
+    const response = await addItemToCart(
+      order_id,
+      product.id,
+      1,
+      product.price
+    );
+    setCartItems(response);
   };
 
   return (

@@ -41,9 +41,12 @@ cartItemsRouter.delete("/:cartItemId", async (req, res, next) => {
 //POST /api/cart_items
 cartItemsRouter.post("/", async (req, res, next) => {
   try {
-    const { order_id, product_id, quantity, price } = req.body;
+    const { title, image_url, order_id, product_id, quantity, price } =
+      req.body;
     console.log("REQ.BODY:", req.body);
     const newCartItem = await createCartItem({
+      title,
+      image_url,
       order_id,
       product_id,
       quantity,

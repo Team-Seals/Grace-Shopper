@@ -83,6 +83,8 @@ async function createTables() {
     await client.query(`
         CREATE TABLE cart_items (
           id SERIAL PRIMARY KEY,
+          title TEXT,
+          image_url TEXT,
           order_id INTEGER REFERENCES orders(id), 
           product_id INTEGER REFERENCES products(id),
           quantity INTEGER,
