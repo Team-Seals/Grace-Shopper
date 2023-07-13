@@ -14,38 +14,45 @@ export default function Checkout() {
     fetchCartItems();
   }, []);
 
-  // async function handleDelete(id) {
-  //   try {
-  //     const response = await deleteCartItem(id);
-  //     console.log("response in handleDelete:", response);
+  async function handleDelete(id) {
+    try {
+      const response = await deleteCartItem(id);
+      console.log("response in handleDelete:", response);
 
-  //     const updatedCartItem = await getCartItems();
-  //     console.log("result from deleting cart item:", updatedCartItem);
-
-  //     if (Array.isArray(updatedCartItem)) {
-  //       setCartItems([...updatedCartItem]);
-  //     } else {
-  //       console.log("Invalid response for cart items.");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+      const updatedCart = await getUserCart();
+      setCart(updatedCart);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
-    <div>
-      <h1 className="Title">Order Review</h1>
-      <div>
-        <h3 className="Item-list">Your Items</h3>
-        {/* {cart &&
-          cart.products.map((product) => (
-            <div>
-              <h1>{product.title}</h1>
-            </div>
-          ))} */}
-
-        {/* {cart && cart.products.map((p) => <p>{p.title}</p>)} */}
-      </div>
+    <div className="Checkout">
+      {cart ? (
+        <>
+          <h1 className="cart-title">Your Cart</h1>
+          <div className="cart-container">
+            {cart?.products.map((p) => (
+              <div className="single-cart-container" key={p.id}>
+                <img
+                  src={p.image_url}
+                  alt="product image"
+                  className="cart-img"
+                />
+                <h1 className="cart-product-title">{p.title}</h1>
+                <h4 className="cart-product-price">${p.price}</h4>
+                <h3 className="cart-product-qty">Qty:{p.quantity}</h3>
+                <button onClick={() => handleDelete(p.id)}>Remove</button>
+              </div>
+            ))}
+          </div>
+          <div className="order-div">
+            <button className="cart-order-button">Order</button>
+          </div>
+        </>
+      ) : (
+        <p>Loading cart...</p>
+      )}
     </div>
   );
 }

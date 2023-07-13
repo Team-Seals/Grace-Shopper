@@ -143,6 +143,10 @@ body {
   cursor: pointer;
 }
 
+.button {
+  padding: 10px 20px;
+}
+
 .button:hover {
   background-color: #555;
 }
@@ -219,42 +223,98 @@ body {
 
 /* SINGLE PRODUCT PAGE */
 
-.single-product-container {
+.container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+}
+
+.single-product-container {
+  text-align: center;
   border: 2px solid;
-  padding-top: 10px;
-  margin-top: 100px;
-  margin-left: 100px;
-  margin-right: 100px;
+  background-color: #aaa;
+}
+
+.single-product-img {
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.single-product-title {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.single-product-price {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.single-product-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.single-product-button:hover {
+  background-color: #45a049;
 }
 
 /* CHECKOUT */
 
-.cart-container {
-  background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 5px;
+.cart-title {
+  border-bottom: 2px solid;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
-.cart-item {
+.cart-container {
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-right: 20px;
 }
 
 .cart-img {
   width: 200px;
   height: 200px;
-  object-fit: cover;
-  margin-right: 10px;
 }
 
-.cart-item-title {
-  font-weight: bold;
-  margin-bottom: 5px;
+.cart-product-price {
+  color: grey;
+}
+
+.cart-product-qty {
+  color: grey;
+}
+
+.order-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.cart-order-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-order-button:hover {
+  background-color: #45a049;
 }
 
 table {
