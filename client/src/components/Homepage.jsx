@@ -46,11 +46,11 @@ export default function Homepage() {
     ? filteredProducts
     : products;
   return (
-    <div>
+    <div className="homepage-container">
       <p className="welcome-text">welcome to SNRKS!</p>
       <div className="homepage">
         <div className="categories">
-          <h2>categories</h2>
+          <h2 className="categories-title">Categories</h2>
           <div>
             <h4 onClick={() => setSelectedCategory(null)} className="category">
               All Categories

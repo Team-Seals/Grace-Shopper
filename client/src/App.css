@@ -43,7 +43,77 @@ body {
 
 /* HOMEPAGE */
 
+.homepage-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
 .welcome-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.categories {
+  text-align: center;
+  margin-top: 20px;
+  border-bottom: 0.5px solid;
+}
+
+.categories-title {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.category {
+  cursor: pointer;
+  margin: 4px;
+}
+
+.category:hover {
+  background-color: grey;
+  cursor: pointer;
+}
+
+.product-header {
+  margin-top: 40px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.product-title {
+  font-weight: bold;
+}
+
+.product-price {
+  color: green;
+}
+
+.product-button {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* .welcome-text {
   display: flex;
   justify-content: center;
 }
@@ -96,7 +166,7 @@ body {
 .product-button {
   width: 50%;
   margin-left: 125px;
-}
+} */
 
 /* LOGIN/REGISTER PAGE */
 
