@@ -10,7 +10,12 @@ export async function getCartItems() {
 
 export async function deleteCartItem(id) {
   try {
-    const response = await fetch(`/api/cart_items/${id}`);
+    const response = await fetch(`/api/cart_items/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const result = await response.json();
     return result;
   } catch (error) {
