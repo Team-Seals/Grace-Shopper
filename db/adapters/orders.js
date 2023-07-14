@@ -66,9 +66,9 @@ async function getCartByUserId(user_id) {
     orders.id AS id,
     orders.status AS status,
     orders.user_id AS user_id,
-    CASE WHEN cart_items.product_id IS NULL THEN '[]'::json
+    CASE WHEN cart_items.order_id IS NULL THEN '[]'::json
     ELSE
-    COALESCE(JSON_AGG(
+    JSON_AGG(
       JSON_BUILD_OBJECT(
         'id', cart_items.id,
         'product_id', products.id,
@@ -77,7 +77,7 @@ async function getCartByUserId(user_id) {
         'price', products.price,
         'image_url', products.image_url
       )
-    ), '[]'::json) END AS products
+    ) END AS products
   FROM orders
     LEFT JOIN cart_items ON orders.id = cart_items.order_id
     LEFT JOIN products ON products.id = cart_items.product_id
@@ -85,7 +85,7 @@ async function getCartByUserId(user_id) {
     orders.user_id = $1
     AND orders.status = false
   GROUP BY
-    orders.id, orders.status, orders.user_id, cart_items.product_id
+    orders.id, cart_items.order_id
   `,
     [user_id]
   );

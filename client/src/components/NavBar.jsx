@@ -6,7 +6,7 @@ import { logout } from "../api/auth";
 export default function NavBar() {
   const [searchInput, setSearchInput] = useState("");
   const { user, setLoggedIn, setUser } = useAuth();
-  console.log("user is: ", user);
+
   const navigate = useNavigate();
 
   const categories = [

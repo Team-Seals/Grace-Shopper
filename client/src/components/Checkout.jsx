@@ -29,9 +29,9 @@ export default function Checkout() {
     <div>
       <h1 className="cart-title">Your Cart</h1>
       <div className="cart-container">
-        {cart?.products.length ? (
+        {cart?.products?.length ? (
           cart.products.map((p) => (
-            <div className="single-cart-container">
+            <div key={p.id} className="single-cart-container">
               <img src={p.image_url} alt="product image" className="cart-img" />
               <h1 className="cart-product-title">{p.title}</h1>
               <h4 className="cart-product-price">${p.price}</h4>
