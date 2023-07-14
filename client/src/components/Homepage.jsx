@@ -20,25 +20,17 @@ export default function Homepage() {
     fetchCategories();
   }, []);
 
-  useEffect(() => {
-    async function fetchUser() {
-      const userResult = await fetchMe();
-      setUser(userResult);
-      console.log("fetching user...", userResult);
-    }
-    fetchUser();
-  }, []);
 
   useEffect(() => {
     async function fetchProducts() {
       const productResult = await fetchAllProducts();
       setProducts(productResult);
-      console.log("Products on HP", productResult);
+ 
     }
     fetchProducts();
   }, []);
 
-  console.log("Selected Category", selectedCategory);
+
   const filteredProducts = products.filter(
     (product) => product.category_id === selectedCategory
   );
