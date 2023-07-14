@@ -62,28 +62,30 @@ async function getCartByUserId(user_id) {
     rows: [order],
   } = await client.query(
     `
-  SELECT
-  orders.id AS id,
-  orders.status AS status,
-  orders.user_id AS user_id,
-  COALESCE(JSON_AGG(
-    JSON_BUILD_OBJECT(
-      'id', cart_items.id,
-      'product_id', products.id,
-      'title', products.title,
-      'quantity', cart_items.quantity,
-      'price', products.price,
-      'image_url', products.image_url
-    )
-  ), '[]'::json) AS products
-FROM orders
-  LEFT JOIN cart_items ON orders.id = cart_items.order_id
-  LEFT JOIN products ON products.id = cart_items.product_id
-WHERE
-  orders.user_id = $1
-  AND orders.status = false
-GROUP BY
-  orders.id, orders.status, orders.user_id
+    SELECT
+    orders.id AS id,
+    orders.status AS status,
+    orders.user_id AS user_id,
+    CASE WHEN cart_items.product_id IS NULL THEN '[]'::json
+    ELSE
+    COALESCE(JSON_AGG(
+      JSON_BUILD_OBJECT(
+        'id', cart_items.id,
+        'product_id', products.id,
+        'title', products.title,
+        'quantity', cart_items.quantity,
+        'price', products.price,
+        'image_url', products.image_url
+      )
+    ), '[]'::json) END AS products
+  FROM orders
+    LEFT JOIN cart_items ON orders.id = cart_items.order_id
+    LEFT JOIN products ON products.id = cart_items.product_id
+  WHERE
+    orders.user_id = $1
+    AND orders.status = false
+  GROUP BY
+    orders.id, orders.status, orders.user_id, cart_items.product_id
   `,
     [user_id]
   );

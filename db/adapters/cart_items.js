@@ -18,23 +18,20 @@ async function createCartItem({ order_id, product_id, quantity }) {
     throw error;
   }
 }
-async function deleteCartItem(order_id) {
-  try {
-    console.log("deleting cart item");
-    const {
-      rows: [cart_item],
-    } = await client.query(
-      `
+async function deleteCartItem(product_id, order_id) {
+  console.log("prduct and order:", product_id, order_id);
+  const {
+    rows: [cart_item],
+  } = await client.query(
+    `
       DELETE FROM cart_items
-      WHERE id = $1
+      WHERE product_id = $1 AND order_id = $2
       RETURNING *;
       `,
-      [order_id]
-    );
-    return cart_item;
-  } catch (error) {
-    throw error;
-  }
+    [product_id, order_id]
+  );
+  console.log("cart item:", cart_item);
+  return cart_item;
 }
 async function editCartItem(order_id, product_id, quantity) {
   try {

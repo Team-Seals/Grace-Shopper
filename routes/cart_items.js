@@ -30,10 +30,11 @@ cartItemsRouter.get("/", async (req, res, next) => {
 
 //DELETE  /api/cart_items/:cartItemId
 
-cartItemsRouter.delete("/:cartItemId", async (req, res, next) => {
+cartItemsRouter.delete("/:product_id/:order_id", async (req, res, next) => {
   try {
-    const { cartItemId } = req.params;
-    const deletedCartItem = await deleteCartItem(cartItemId);
+    const { order_id, product_id } = req.params;
+    const deletedCartItem = await deleteCartItem(product_id, order_id);
+    console.log("deleted cart item:", deleteCartItem);
     res.send(deletedCartItem);
   } catch (error) {
     next(error);
