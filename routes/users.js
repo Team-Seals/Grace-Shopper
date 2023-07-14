@@ -32,6 +32,7 @@ userRouter.get("/me", verifyToken, async (req, res, next) => {
         message: "User not found.",
       };
     }
+    delete user.password;
     res.json(user);
   } catch (error) {
     next(error);

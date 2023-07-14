@@ -26,6 +26,7 @@ export async function fetchMe() {
   try {
     const response = await fetch("/api/users/me");
     const result = await response.json();
+    console.log("RESULT FROM IN FETCH ME", result);
     return result;
   } catch (error) {
     console.error(error);
