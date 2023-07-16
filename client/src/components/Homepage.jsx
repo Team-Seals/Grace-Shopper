@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { fetchAllCategories } from "../api/categories";
 import useAuth from "../hooks/useAuth";
-import { fetchMe } from "../api/auth";
 import { fetchAllProducts } from "../api/products";
 import { useNavigate } from "react-router-dom";
 
-export default function Homepage() {
+export default function Homepage({ searchInput }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
@@ -20,26 +19,26 @@ export default function Homepage() {
     fetchCategories();
   }, []);
 
-
   useEffect(() => {
     async function fetchProducts() {
       const productResult = await fetchAllProducts();
       setProducts(productResult);
- 
     }
     fetchProducts();
   }, []);
 
-
   const filteredProducts = products.filter(
-    (product) => product.category_id === selectedCategory
+    (product) =>
+      product.title.toLowerCase().includes(searchInput?.toLowerCase() || "")
   );
+
   const productsToDisplay = filteredProducts.length
     ? filteredProducts
     : products;
+
   return (
     <div className="homepage-container">
-      <p className="welcome-text">welcome to SNRKS!</p>
+      <p className="welcome-text">Welcome to SNRKS!</p>
       <div className="homepage">
         <div className="categories">
           <h2 className="categories-title">Categories</h2>

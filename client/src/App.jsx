@@ -6,15 +6,18 @@ import Register from "./components/Register";
 import Checkout from "./components/Checkout";
 import NavBar from "./components/NavBar";
 import ViewProduct from "./components/ViewProduct";
+import React, { useState } from "react";
 
 function App() {
+  const [searchInput, setSearchInput] = useState("");
+
   return (
     <div>
       <header>
-        <NavBar />
+        <NavBar setSearchInput={setSearchInput} />
       </header>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage searchInput={searchInput} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/checkout" element={<Checkout />} />
