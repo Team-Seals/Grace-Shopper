@@ -38,3 +38,19 @@ export async function addItemToCart(product_id, quantity) {
     console.error(error);
   }
 }
+
+export async function updateCartItemQty (id, quantity) {
+  try {
+    const response = await fetch (`/api/cart_items/${id}`, {
+      method:"PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify ({quantity}),
+    })
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}

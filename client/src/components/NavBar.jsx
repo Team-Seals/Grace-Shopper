@@ -65,20 +65,3 @@ export default function NavBar() {
   );
 }
 
-{
-  /* <div className="search-wrapper">
-        <div className="input=holder">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Type to search"
-            value={searchInput}
-            onChange={handleChange}
-          />
-          <button className="search-icon" onClick="searchToggle(this,event)">
-            <span></span>
-          </button>
-        </div>
-        <span className="close" onClick="searchToggle(this, event)"></span>
-      </div> */
-}
