@@ -3,29 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { logout } from "../api/auth";
 
-export default function NavBar() {
-  const [searchInput, setSearchInput] = useState("");
+export default function NavBar({ setSearchInput }) {
   const { user, setLoggedIn, setUser } = useAuth();
-
   const navigate = useNavigate();
 
-  const categories = [
-    { name: "Casual" },
-    { name: "Running" },
-    { name: "Lifestyle" },
-  ];
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    setSearchInput(e.target.value);
-  };
-  if (searchInput.length > 0) {
-    categories.filter((category) => {
-      return category.name.match(searchInput);
-    });
-  }
-
-  //Loggout result is saying undefined, need the login/register link to show if logged out
   const handleLogout = async () => {
     try {
       const logoutResult = await logout();
@@ -33,19 +14,21 @@ export default function NavBar() {
       setUser({ id: null, username: "Guest" });
       setLoggedIn(false);
       navigate("/");
-    } catch (error) {}
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
   };
 
   return (
     <div className="Nav">
       <h1 className="main">
         <Link to="/">SNRKS</Link>
-        </h1>
+      </h1>
       <input
         className="searchBar"
         type="text"
         placeholder="Search"
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => setSearchInput(e.target.value)}
       />
       <h3 className="links">
         <div>
@@ -64,4 +47,3 @@ export default function NavBar() {
     </div>
   );
 }
-
