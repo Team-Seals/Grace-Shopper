@@ -8,6 +8,7 @@ import { createOrder, getUserCart } from "../api/orders";
 
 export default function Checkout() {
   const [cart, setCart] = useState(null);
+  const [order, setOrder] = useState(null);
 
   useEffect(() => {
     async function fetchCartItems() {
@@ -51,7 +52,12 @@ export default function Checkout() {
   async function addToOrder(user_id, status) {
     try {
       const response = await createOrder(user_id, status);
-    } catch (error) {}
+      setOrder(response);
+      setCart(null);
+      alert("Order Placed!");
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   console.log("cart:", cart);
