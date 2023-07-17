@@ -4,7 +4,7 @@ import {
   getCartItems,
   updateCartItemQty,
 } from "../api/cart_items";
-import { getUserCart } from "../api/orders";
+import { createOrder, getUserCart } from "../api/orders";
 
 export default function Checkout() {
   const [cart, setCart] = useState(null);
@@ -48,6 +48,12 @@ export default function Checkout() {
     }
   }
 
+  async function addToOrder(user_id, status) {
+    try {
+      const response = await createOrder(user_id, status);
+    } catch (error) {}
+  }
+
   console.log("cart:", cart);
   return (
     <div>
@@ -78,7 +84,9 @@ export default function Checkout() {
         )}
       </div>
       <div className="order-div">
-        <button className="cart-order-button">Order</button>
+        <button className="cart-order-button" onClick={() => addToOrder()}>
+          Order
+        </button>
       </div>
     </div>
   );

@@ -19,10 +19,6 @@ async function createOrders({ user_id, status }) {
   }
 }
 
-async function createOrderByUserId(user_id) {
-  console.log("Creating order by userId");
-}
-
 async function getAllOrders() {
   try {
     console.log("...getting all orders");
