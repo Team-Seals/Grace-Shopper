@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 export default function Register() {
-  const { setLoggedIn} = useAuth()
+  const { setLoggedIn, setUser } = useAuth();
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
@@ -25,14 +25,14 @@ export default function Register() {
         },
         body: JSON.stringify({ username: newUsername, password: newPassword }),
       });
-      if(response.ok){
-
+      if (response.ok) {
         const result = await response.json();
         console.log("REGISTER RESULT:", result);
-        setLoggedIn(true)
+        setUser(result);
+        setLoggedIn(true);
         navigate("/");
-      }else {
-        alert('Registration failed') ;
+      } else {
+        alert("Registration failed");
       }
     } catch (error) {
       console.error("Error:", error);

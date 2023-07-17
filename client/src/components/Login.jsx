@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 export default function Login() {
-  const { setLoggedIn } = useAuth();
+  const { setLoggedIn, setUser } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -26,6 +26,8 @@ export default function Login() {
 
       if (response.ok) {
         //successful login
+        const user = await response.json();
+        setUser(user.user);
         setLoggedIn(true);
         console.log("Login is a success!");
         navigate("/");
