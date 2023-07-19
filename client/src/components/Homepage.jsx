@@ -4,10 +4,12 @@ import useAuth from "../hooks/useAuth";
 import { fetchAllProducts } from "../api/products";
 import { useNavigate } from "react-router-dom";
 
-export default function Homepage({ searchInput }) {
+export default function Homepage({ searchInput, setSearchInput }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  console.log("selected cat", selectedCategory);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  console.log("products", products);
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -27,11 +29,11 @@ export default function Homepage({ searchInput }) {
     fetchProducts();
   }, []);
 
-  const filteredProducts = products.filter(
-    (product) =>
-      product.title.toLowerCase().includes(searchInput?.toLowerCase() || "")
-  );
-
+  const filteredProducts = searchInput
+    ? products.filter((product) =>
+        product.title.toLowerCase().includes(searchInput?.toLowerCase())
+      )
+    : products.filter((product) => product.category_id === selectedCategory);
   const productsToDisplay = filteredProducts.length
     ? filteredProducts
     : products;
@@ -50,7 +52,10 @@ export default function Homepage({ searchInput }) {
           {categories.length > 0 &&
             categories.map((category) => (
               <div
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => {
+                  setSearchInput("");
+                  setSelectedCategory(category.id);
+                }}
                 key={category.id}
               >
                 <h4 className="category">{category.name}</h4>

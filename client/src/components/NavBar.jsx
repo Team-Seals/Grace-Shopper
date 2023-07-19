@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { logout } from "../api/auth";
 
-export default function NavBar({ setSearchInput }) {
+export default function NavBar({ setSearchInput, searchInput }) {
   const { user, setLoggedIn, setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -28,6 +28,7 @@ export default function NavBar({ setSearchInput }) {
         className="searchBar"
         type="text"
         placeholder="Search"
+        value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
       <h3 className="links">
