@@ -14,10 +14,18 @@ function App() {
   return (
     <div>
       <header>
-        <NavBar setSearchInput={setSearchInput} />
+        <NavBar searchInput={searchInput} setSearchInput={setSearchInput} />
       </header>
       <Routes>
-        <Route path="/" element={<Homepage searchInput={searchInput} />} />
+        <Route
+          path="/"
+          element={
+            <Homepage
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+            />
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/checkout" element={<Checkout />} />
